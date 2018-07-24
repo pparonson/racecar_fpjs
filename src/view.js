@@ -7,35 +7,36 @@ import {
 
 const {pre, h1, div, button, span} = hh(h)
 
-function createDashBoard(_dispatch, _model) {
-  return div({className: "dib"}, [
-    span( {className: ""}, _dispatch() ) // speedDash
-    , span( {className: ""}, _dispatch() ) // scoreDash
-    , span( {className: ""}, _dispatch() ) // lifeDash
-  ])
-}
+// function createDashBoard(_dispatch, _model) {
+//   return div({className: "dib"}, [
+//     span( {className: ""}, _dispatch() ) // speedDash
+//     , span( {className: ""}, _dispatch() ) // scoreDash
+//     , span( {className: ""}, _dispatch() ) // lifeDash
+//   ])
+// }
 
 function roadView(_model) {
   let arr  = []
   const road = div({
-    className: `w-${_model.playerCar.roadWidth} absolute h2 top-0 tc white bg-gray db`
+    className: `w-${_model.playerCar.roadWidth} h3 top-0 tc br2 white bg-gray db center`
   }
   , [
     "|"
   ])
   // dynamically create div road elements with recursion
   function repeatElement(_road, _num) {
-  if (_num < 0) {
-    return
-  }
+    if (_num < 0) {
+      return
+    }
 
-  if (_num === 1) {
-    return arr = [...arr, _road]
-  } else
-    arr = [...arr, _road]
-    return repeatElement(road, _num - 1)
+    if (_num === 1) {
+      return arr = [...arr, _road]
+    } else {
+      arr = [...arr, _road]
+      return repeatElement(road, _num - 1)
+    }
   }
-  repeatElement(road, 8)
+  repeatElement(road, 10)
   return arr
 }
 
@@ -43,11 +44,10 @@ function gameView(_dispatch, _model) {
   const {gamePlay} = _model
   if (gamePlay) {
     return div(
-      {className: "bg-green w-100 min-vh"}
+      {className: "bg-green w-100 h-100"}
       , [
-        createDashBoard(_dispatch, _model)
-        // , ...roadView(_model) // destructuring
-        , pre( JSON.stringify(_model, null, 2) )
+        // createDashBoard(_model)
+        ...roadView(_model) // destructuring
       ]
     )
   }
@@ -64,11 +64,11 @@ function gameView(_dispatch, _model) {
 }
 
 function view(_dispatch, _model) {
-  return div({className: "w-two-thirds ml6 bg-light-gray relative"}, [
+  return div({className: "w-100 h-100"}, [
     gameView(_dispatch, _model)
 
     // testing only
-    // , pre( JSON.stringify(_model, null, 2) )
+    // pre( JSON.stringify(_model, null, 2) )
   ])
 }
 
