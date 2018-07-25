@@ -8,13 +8,14 @@
 }
 
 .playerCar {
-  position: absolute;
-  height: 80px;
-  width: 40px;
-  bottom: 60px;
-  left: 365px;
-  border-radius: 5px;
   background-image: url("../images/car1.png");
-  background-size: cover;
-  z-index: 100;
+  top: 32rem;
+  left: 27rem;
+
+}
+
+.enemyCar {
+  background-image: url("../images/car2.png");
+  top: 10rem;
+  left: 27rem;
 }

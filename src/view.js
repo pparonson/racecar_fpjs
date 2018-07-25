@@ -1,5 +1,6 @@
 import {h} from "virtual-dom"
 import hh from "hyperscript-helpers"
+import * as R from "ramda"
 
 import {
   startGame
@@ -7,10 +8,22 @@ import {
 
 const {pre, h1, div, button, span} = hh(h)
 
-function playerCarView(_model) {
-  return div({className: "playerCar .br4 .cover .h4 .w2 .z-max .absolute"}, [
+function enemyCarsView(num) {
+  // TODO: add car number to innerHTML
+  // TODO: add random colors and positions to enemyCars
+  const enemyCar = div({
+    className: "absolute br3 cover h3 w2 z-max enemyCar"
+  }
+, [])
+  return R.map(item => enemyCar, R.range(0, num))
+}
 
-  ])
+function playerCarView(_model) {
+  const {x, y} = _model.playerCar.ele
+  return div({
+    className: `absolute br3 cover h3 w2 z-max playerCar`
+  }
+  , [])
 }
 
 function dashBoardView(_model) {
@@ -57,6 +70,7 @@ function gameView(_dispatch, _model) {
         dashBoardView(_model)
         , ...roadView(_model) // destructuring
         , playerCarView(_model)
+        , ...enemyCarsView(3)
       ]
     )
   }
@@ -64,7 +78,7 @@ function gameView(_dispatch, _model) {
   return div({className: "db w-100"}, [
     h1({className: "f3 pv2 tc bn center db"}, "RACECAR")
     , button({
-        className: "f4 pv1 ph3 bg-red .br2 white bn tc center db"
+        className: "f4 pv1 ph3 bg-red br2 white bn tc center db"
         , onclick: () => _dispatch(startGame(true))
       }
       , "Start!"

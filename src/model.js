@@ -7,9 +7,9 @@ const initModel = {
     , carsToPass: 10
     , roadWidth: 30
     , ele: {
-      x: 25
-      , y: 50
-    } // player position obj
+      x: 27 // playerCar position coordinates
+      , y: 32
+    }
   }
   , gamePlay: false
   , keys: {
