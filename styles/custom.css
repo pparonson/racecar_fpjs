@@ -6,3 +6,15 @@
   background-color: "#d3d3d3";
   overflow: hidden;
 }
+
+.playerCar {
+  position: absolute;
+  height: 80px;
+  width: 40px;
+  bottom: 60px;
+  left: 365px;
+  border-radius: 5px;
+  background-image: url("../images/car1.png");
+  background-size: cover;
+  z-index: 100;
+}

@@ -6,7 +6,10 @@ const initModel = {
     , gameScore: 0
     , carsToPass: 10
     , roadWidth: 30
-    // , ele: div // player position obj
+    , ele: {
+      x: 25
+      , y: 50
+    } // player position obj
   }
   , gamePlay: false
   , keys: {

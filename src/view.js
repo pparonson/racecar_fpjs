@@ -7,13 +7,21 @@ import {
 
 const {pre, h1, div, button, span} = hh(h)
 
-// function createDashBoard(_dispatch, _model) {
-//   return div({className: "dib"}, [
-//     span( {className: ""}, _dispatch() ) // speedDash
-//     , span( {className: ""}, _dispatch() ) // scoreDash
-//     , span( {className: ""}, _dispatch() ) // lifeDash
-//   ])
-// }
+function playerCarView(_model) {
+  return div({className: "playerCar .br4 .cover .h4 .w2 .z-max .absolute"}, [
+
+  ])
+}
+
+function dashBoardView(_model) {
+  let {speed, lives, gameScore} = _model.playerCar
+  let attributes = "dib ph2 white"
+  return div({className: "top-0 w-100 bg-black"}, [
+    span( {className: attributes}, `${speed} MPH |`) // speedDash
+    , span( {className: attributes}, `SCORE ${gameScore} |`) // lifeDash
+    , span( {className: attributes},  `LIVES ${lives}`) // scoreDash
+  ])
+}
 
 function roadView(_model) {
   let arr  = []
@@ -46,8 +54,9 @@ function gameView(_dispatch, _model) {
     return div(
       {className: "bg-green w-100 h-100"}
       , [
-        // createDashBoard(_model)
-        ...roadView(_model) // destructuring
+        dashBoardView(_model)
+        , ...roadView(_model) // destructuring
+        , playerCarView(_model)
       ]
     )
   }
@@ -55,7 +64,7 @@ function gameView(_dispatch, _model) {
   return div({className: "db w-100"}, [
     h1({className: "f3 pv2 tc bn center db"}, "RACECAR")
     , button({
-        className: "f4 pv1 ph3 bg-red br2 white bn tc center db"
+        className: "f4 pv1 ph3 bg-red .br2 white bn tc center db"
         , onclick: () => _dispatch(startGame(true))
       }
       , "Start!"
