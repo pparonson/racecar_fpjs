@@ -3,7 +3,7 @@ import hh from "hyperscript-helpers"
 import * as R from "ramda"
 
 import {
-  startGame
+  startGameMsg
 } from "./update"
 
 const {pre, h1, div, button, span} = hh(h)
@@ -79,7 +79,7 @@ function gameView(_dispatch, _model) {
     h1({className: "f3 pv2 tc bn center db"}, "RACECAR")
     , button({
         className: "f4 pv1 ph3 bg-red br2 white bn tc center db"
-        , onclick: () => _dispatch(startGame(true))
+        , onclick: () => _dispatch(startGameMsg(true))
       }
       , "Start!"
     )
@@ -93,6 +93,17 @@ function view(_dispatch, _model) {
     // testing only
     // pre( JSON.stringify(_model, null, 2) )
   ])
+}
+
+// helper fns
+// return random hex color value
+// 16 - The number will show as an hexadecimal value
+function randomColor() {
+  function c() {
+    let hex = Math.floor(Math.random() * 256).toString(16)
+    return ("0" + String(hex)).substr(-2) // pad with zero
+  }
+  return "#" + c() + c() + c()
 }
 
 export default view

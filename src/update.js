@@ -1,8 +1,16 @@
 const MSGS = {
   START_GAME: "START_GAME"
+  , UPDATE_SPEED: "UPDATE_SPEED"
 }
 
-export function startGame(_gamePlay) {
+export function updateSpeedMsg(_speed) {
+  return {
+    type: MSGS.UPDATE_SPEED
+    , speed: _speed
+  }
+}
+
+export function startGameMsg(_gamePlay) {
   return {
     type: MSGS.START_GAME
     , gamePlay: _gamePlay
